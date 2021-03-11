@@ -47,8 +47,8 @@
       echo ${OV_VERSION}
       echo ${TEST_FILE}
       echo ${DEVICE}      
-      source /home/iotgecsp/ocm_tf_setup/env/bin/activate
-      bash build_ocm.sh home/iotgecsp/ocm_tf_setup/tensorflow/
+      source /home/bhadur/ocm_tf_setup/env/bin/activate
+      bash build_ocm.sh home/bhadur/ocm_tf_setup/tensorflow/
       pwd
      workingDirectory: $(WORK_DIR)  
      displayName: "Build"
