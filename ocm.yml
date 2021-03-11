@@ -70,13 +70,13 @@
       cd $(WORK_DIR)
       mkdir -p $WORK_DIR/TESTDIR/
       mkdir -p $WORK_DIR/LastLog/
-      cd $WORK_DIR/ocm/test/python/
+      cd $WORK_DIR/test/python/
       cp -r tf_ocm_logs/ $WORK_DIR/LastLog
       cd $WORK_DIR/LastLog/
       mkdir -p $WORK_DIR/TESTDIR/$DEVICE/${OV_VERSION}/tf_ocm_logs
       cp -r $WORK_DIR/LastLog/tf_ocm_logs/$DEVICE/* $WORK_DIR/TESTDIR/$DEVICE/${OV_VERSION}/tf_ocm_logs/
       rm -rf $WORK_DIR/LastLog/ 
-      cd $WORK_DIR/ocm/test/python/
+      cd $WORK_DIR/test/python/
       pip3 install XlsxWriter
       python3 /home/bhadur/tflow/jenkins_workspace/utilityrobot.py $WORK_DIR/TESTDIR
       cp ocm_report.xlsx /tmp
