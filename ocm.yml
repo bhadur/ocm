@@ -56,6 +56,7 @@
              
    - script: |
       echo $OV_VERSION
+      echo ${WORK_DIR}
       bash run_test_setup.sh ${OPENVINO_BIN_DIR}
       bash run_test.sh ${OPENVINO_BIN_DIR} ${BUILD_TYPE} ${TESTMODE} ${TEST_FILE} ${DEVICE}
      workingDirectory: $(WORK_DIR)   
