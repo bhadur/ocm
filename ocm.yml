@@ -42,7 +42,7 @@
      displayName: "Setup"     
    
    - script: |
-      cd $(WORK_DIR)
+      cd $(WORK_DIR)/test/python
       echo ${BUILD_TYPE}
       echo ${OV_VERSION}
       echo ${TEST_FILE}
