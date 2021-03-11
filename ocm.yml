@@ -55,7 +55,7 @@
      displayName: "Build"
              
    - script: |
-      echo $OV_VERSION
+      echo $OPENVINO_BIN_DIR
       echo ${WORK_DIR}
       bash ${WORK_DIR}/test/python/run_test_setup.sh ${OPENVINO_BIN_DIR}
       bash ${WORK_DIR}/test/python/run_test.sh ${OPENVINO_BIN_DIR} ${BUILD_TYPE} ${TESTMODE} ${TEST_FILE} ${DEVICE}
