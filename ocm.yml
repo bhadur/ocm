@@ -14,6 +14,7 @@
     BUILD_TYPE: OCM
     OV_VERSION: openvino_2021.2.185
     TEST_FILE: test_list.txt
+    OPENVINO_BIN_DIR: /opt/intel/${OV_VERSION}
     TESTMODE: UTEST
     DEVICE: CPU
     
@@ -53,6 +54,17 @@
      workingDirectory: $(WORK_DIR)  
      displayName: "Build"
              
+   - script: |
+      cd /home/bhadur/tflow/jenkins_workspace/ocm/test/python/
+      echo $OV_VERSION
+      OPENVINO_BIN_DIR=/opt/intel/${OV_VERSION}
+	     #bash run_test_setup.sh $OPENVINO_BIN_DIR -> This step is failing
+	     #bash run_test.sh $OPENVINO_BIN_DIR $BUILD_TYPE $TESTMODE $TEST_FILE $DEVICE -> This step is failing due to missing args
+      bash run_test_setup.sh ${OPENVINO_BIN_DIR}
+	     bash run_test.sh ${OPENVINO_BIN_DIR} ${BUILD_TYPE} ${TESTMODE} ${TEST_FILE} ${DEVICE}
+     workingDirectory: $(WORK_DIR)   
+     displayName: "OCM Tests"  
+     
    - script: |
       cd $(WORK_DIR)
       mkdir -p $WORK_DIR/TESTDIR/
