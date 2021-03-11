@@ -27,6 +27,7 @@
    - checkout: ocm
      clean: true
      lfs: false
+     submodules: recursive
      path: ocm
      
    - script: |
