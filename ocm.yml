@@ -24,10 +24,9 @@
       rm -rf $(BUILD_DIR) ; mkdir $(BUILD_DIR)
       
    
-   - checkout: ocm
+   - checkout: self
      clean: true
      lfs: false
-     submodules: recursive
      path: ocm
      
    - script: |
