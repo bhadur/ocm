@@ -48,7 +48,7 @@
       echo ${TEST_FILE}
       echo ${DEVICE}      
       source /home/bhadur/ocm_tf_setup/env/bin/activate
-      bash build_ocm.sh home/bhadur/ocm_tf_setup/tensorflow/
+      bash build_ocm.sh /home/bhadur/ocm_tf_setup/tensorflow/
       pwd
      workingDirectory: $(WORK_DIR)  
      displayName: "Build"
