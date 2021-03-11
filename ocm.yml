@@ -11,7 +11,6 @@
  variables:
     WORKING_DIR: $(Pipeline.Workspace)/openvino_tensorflow
     BUILD_DIR: $(WORK_DIR)/build
-    WORK_DIR: /home/iotgecsp/basm/ocm
     BUILD_TYPE: OCM
     OV_VERSION: openvino_2021.2.185
     TEST_FILE: test_list.txt
@@ -33,7 +32,7 @@
    - script: |
       pwd
       pwd
-      export TF_LOCATION=/home/iotgecsp/setup/artifacts/tensorflow
+      export TF_LOCATION=/home/bhadur/setup/artifacts/tensorflow
       export OV_LOCATION=/opt/intel/openvino_2021.2.185/ 
       BUILD_TYPE=OCM
       OV_VERSION="openvino_2021.2.185"
@@ -66,6 +65,6 @@
       rm -rf $WORK_DIR/LastLog/ 
       cd $WORK_DIR
       pip3 install XlsxWriter
-      python3 /home/iotgecsp/tflow/jenkins_workspace/utilityrobot.py $WORK_DIR/TESTDIR
+      python3 /home/bhadur/tflow/jenkins_workspace/utilityrobot.py $WORK_DIR/TESTDIR
       cp ocm_report.xlsx /tmp
      displayName: "Logging and report"
