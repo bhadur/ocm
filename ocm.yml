@@ -9,7 +9,7 @@
   name: 'Default'  
 
  variables:
-    WORKING_DIR: $(Pipeline.Workspace)/ocm
+    WORK_DIR: $(Pipeline.Workspace)/ocm
     BUILD_DIR: $(WORK_DIR)/build
     BUILD_TYPE: OCM
     OV_VERSION: openvino_2021.2.185
