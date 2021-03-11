@@ -14,7 +14,7 @@
     BUILD_TYPE: OCM
     OV_VERSION: openvino_2021.2.185
     TEST_FILE: test_list.txt
-    OPENVINO_BIN_DIR: /opt/intel/${OV_VERSION}
+    OPENVINO_BIN_DIR: /opt/intel/openvino_2021.2.185
     TESTMODE: UTEST
     DEVICE: CPU
     
@@ -34,7 +34,6 @@
       pwd
       pwd
       export TF_LOCATION=/home/bhadur/setup/artifacts/tensorflow
-      export OV_LOCATION=/opt/intel/openvino_2021.2.185/ 
       BUILD_TYPE=OCM
       OV_VERSION="openvino_2021.2.185"
       TEST_FILE="test_list.txt"
