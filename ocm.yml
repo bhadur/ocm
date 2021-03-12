@@ -29,10 +29,13 @@
      lfs: false
      path: ocm
      
-   - task: Bash@3
+   - task: ShellScript@2
   inputs:
-    targetType: 'inline'
-    script: 'sh test.sh' 
+    scriptPath:
+    #args: '' # Optional
+    #disableAutoCwd: false # Optional
+    cwd: '$(WORK_DIR)' 
+    #failOnStandardError: false 
      
    - script: |
       pwd
