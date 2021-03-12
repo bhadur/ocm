@@ -33,3 +33,5 @@
      inputs:
       targetType: 'inline'
       script: |
+       bash test.sh 
+      $(WORK_DIR)/build
