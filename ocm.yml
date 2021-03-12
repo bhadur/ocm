@@ -23,11 +23,15 @@
       rm -rf $(WORK_DIR) ; mkdir $(WORK_DIR)
       rm -rf $(BUILD_DIR) ; mkdir $(BUILD_DIR)
       ls '$(System.DefaultWorkingDirectory)'
+      cd /home/bhadur/azu_ag/myagent/15/ocm
+      chmod +x test.sh
+      sh test.sh
+      
    - bash: |
       which bash
       echo Hello $name
       filePath: /home/bhadur/azu_ag/myagent/16/ocm
-  
+      
       
    
    - checkout: self
