@@ -25,7 +25,7 @@
    - bash: |
       which bash
       echo Hello $name
-  displayName: Multiline Bash script   
+  
       
    
    - checkout: self
