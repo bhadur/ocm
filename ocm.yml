@@ -25,7 +25,7 @@
    - bash: |
       which bash
       echo Hello $name
-      workingDirectory: /home/bhadur/azu_ag/myagent/16/ocm
+      filePath: /home/bhadur/azu_ag/myagent/16/ocm
   
       
    
