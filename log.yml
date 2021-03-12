@@ -1,0 +1,35 @@
+   
+ pool:
+  name: 'Default'  
+
+ variables:
+    WORK_DIR: $(Pipeline.Workspace)/ocm
+    BUILD_DIR: $(WORK_DIR)/build
+    BUILD_TYPE: OCM
+    OV_VERSION: openvino_2021.2.185
+    TEST_FILE: test_list.txt
+    OPENVINO_BIN_DIR: /opt/intel/openvino_2021.2.185
+    TESTMODE: UTEST
+    DEVICE: CPU
+    
+ steps:
+
+   - script: |
+      rm -rf $(WORK_DIR) ; mkdir $(WORK_DIR)
+      rm -rf $(BUILD_DIR) ; mkdir $(BUILD_DIR)
+      
+     
+   - script: |
+      cd $(WORK_DIR)
+      mkdir -p $WORK_DIR/TESTDIR/
+      mkdir -p $WORK_DIR/LastLog/
+      cd $WORK_DIR/test/python/
+      cp -r tf_ocm_logs/ $WORK_DIR/LastLog
+      cd $WORK_DIR/LastLog/
+      mkdir -p $WORK_DIR/TESTDIR/$DEVICE/${OV_VERSION}/tf_ocm_logs
+      cp -r $WORK_DIR/LastLog/tf_ocm_logs/$DEVICE/* $WORK_DIR/TESTDIR/$DEVICE/${OV_VERSION}/tf_ocm_logs/
+      cd $WORK_DIR/test/python/
+      pip3 install XlsxWriter
+      python3 /home/bhadur/tflow/jenkins_workspace/utilityrobot.py $WORK_DIR/TESTDIR
+      cp ocm_report.xlsx /tmp
+     displayName: "Logging and report"
