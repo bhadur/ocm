@@ -33,4 +33,4 @@
      inputs:
       targetType: 'inline'
       script: |
-      echo "This should only run once"
+      echo 'This should only run once'
