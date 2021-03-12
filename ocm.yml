@@ -11,6 +11,7 @@
  variables:
     WORK_DIR: $(Pipeline.Workspace)/ocm
     BUILD_DIR: $(WORK_DIR)/build
+    HOME_DIR: /home/bhadur
     BUILD_TYPE: OCM
     OV_VERSION: openvino_2021.2.185
     TEST_FILE: test_list.txt
@@ -29,27 +30,11 @@
      clean: true
      lfs: false
      path: ocm
-     
-   - script: |
-      pwd
-      pwd
-      export TF_LOCATION=/home/bhadur/setup/artifacts/tensorflow
-      BUILD_TYPE=OCM
-      OV_VERSION="openvino_2021.2.185"
-      TEST_FILE="test_list.txt"
-      TESTMODE="UTEST"
-      DEVICE="CPU"
-     displayName: "Setup"     
-   
+      
    - script: |
       cd $(WORK_DIR)
-      echo ${BUILD_TYPE}
-      echo ${OV_VERSION}
-      echo ${TEST_FILE}
-      echo ${DEVICE}      
-      source /home/bhadur/ocm_tf_setup/env/bin/activate
-      bash build_ocm.sh /home/bhadur/ocm_tf_setup/tensorflow/
-      pwd
+      source $(HOME_DIR)/ocm_tf_setup/env/bin/activate
+      bash build_ocm.sh $(HOME_DIR)/ocm_tf_setup/tensorflow/
      workingDirectory: $(WORK_DIR)  
      displayName: "Build"
              
@@ -78,7 +63,7 @@
       rm -rf $WORK_DIR/LastLog/ 
       cd $WORK_DIR/test/python/
       pip3 install XlsxWriter
-      python3 /home/bhadur/tflow/jenkins_workspace/utilityrobot.py $WORK_DIR/TESTDIR
+      python3 $(HOME_DIR)/tflow/jenkins_workspace/utilityrobot.py $WORK_DIR/TESTDIR
       cp ocm_report.xlsx /tmp
      workingDirectory: $(WORK_DIR)  
      displayName: "Logging and report"
