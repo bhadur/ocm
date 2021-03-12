@@ -29,13 +29,9 @@
      lfs: false
      path: ocm
      
-   - task: ShellScript@2
-  inputs:
-    scriptPath:
-    #args: '' # Optional
-    #disableAutoCwd: false # Optional
-    cwd: '$(WORK_DIR)' 
-    #failOnStandardError: false 
+   - bash: inline script
+  workingDirectory: $(WORK_DIR)
+  failOnStderr: false
      
    - script: |
       pwd
