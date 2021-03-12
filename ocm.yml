@@ -30,10 +30,10 @@
      path: ocm
      
    - task: Bash@3
-      inputs:
-        targetType: 'inline'
-        script: |
-          echo "This should only run once"
+     inputs:
+      targetType: 'inline'
+      script: |
+      echo "This should only run once"
      
    - script: |
       pwd
