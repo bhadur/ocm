@@ -20,7 +20,7 @@
       
      
    - script: |
-      cd $(WORK_DIR)
+      WORK_DIR=/home/bhadur/azu_ag/myagent/
       mkdir -p $WORK_DIR/TESTDIR/
       mkdir -p $WORK_DIR/LastLog/
       cd $WORK_DIR/test/python/
