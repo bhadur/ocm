@@ -29,9 +29,10 @@
      lfs: false
      path: ocm
      
-   - bash: test.sh script
-  workingDirectory: $(WORK_DIR)
-  failOnStderr: false
+   - task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: |
      
    - script: |
       pwd
