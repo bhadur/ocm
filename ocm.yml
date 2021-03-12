@@ -24,8 +24,7 @@
       rm -rf $(BUILD_DIR) ; mkdir $(BUILD_DIR)
       ls '$(System.DefaultWorkingDirectory)'
       cd /home/bhadur/azu_ag/myagent/15/ocm
-      chmod +x test.sh
-      sh test.sh
+      bash test.sh
       
    - bash: |
       which bash
