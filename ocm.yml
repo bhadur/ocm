@@ -12,12 +12,7 @@
     WORK_DIR: $(Pipeline.Workspace)/ocm
     BUILD_DIR: $(WORK_DIR)/build
     HOME_DIR: /home/bhadur
-    BUILD_TYPE: OCM
-    OV_VERSION: openvino_2021.2.185
-    TEST_FILE: test_list.txt
-    OPENVINO_BIN_DIR: /opt/intel/openvino_2021.2.185
-    TESTMODE: UTEST
-    DEVICE: CPU
+   
     
  steps:
 
