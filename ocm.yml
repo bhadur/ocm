@@ -30,9 +30,9 @@
      path: ocm
      
    - task: Bash@3
-      inputs:
-      targetType: 'inline'
-      script: 'sh test.sh'  
+  inputs:
+    targetType: 'inline'
+    script: 'sh test.sh' 
      
    - script: |
       pwd
