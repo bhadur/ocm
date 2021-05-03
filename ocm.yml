@@ -28,7 +28,7 @@
       
    - script: |
       cd $(WORK_DIR)
-      echo "Test commit, aborting the ci trigger"
+      echo "Test commit aborting the ci trigger"
       source $(HOME_DIR)/ocm_tf_setup/env/bin/activate
       bash build_ocm.sh $(HOME_DIR)/ocm_tf_setup/tensorflow/
      workingDirectory: $(WORK_DIR)  
