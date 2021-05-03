@@ -33,6 +33,7 @@
    - script: |
       pwd
       pwd
+      echo "test"
       export TF_LOCATION=/home/bhadur/setup/artifacts/tensorflow
       export OV_LOCATION=/opt/intel/openvino_2021.2.185/ 
       BUILD_TYPE=OCM
