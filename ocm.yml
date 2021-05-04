@@ -38,7 +38,7 @@
       
    - script: |
       cd $(WORK_DIR)
-      echo "Testcommit aborting citrigger"
+      echo "Testcommit aborting citrigger & run pr trigger"
       source $(HOME_DIR)/ocm_tf_setup/env/bin/activate
       bash build_ocm.sh $(HOME_DIR)/ocm_tf_setup/tensorflow/
      workingDirectory: $(WORK_DIR)  
