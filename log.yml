@@ -32,4 +32,4 @@
       pip3 install XlsxWriter
       python3 /home/bhadur/tflow/jenkins_workspace/utilityrobot.py $WORK_DIR/TESTDIR
       cp ocm_report.xlsx /tmp
-     displayName: "Logging and report "
+     displayName: "Logging and reporting "
