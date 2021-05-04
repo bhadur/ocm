@@ -4,6 +4,16 @@
     type: github
     endpoint: bhadur
     name: bhadur/ocm
+    trigger:
+     branches:
+      include:
+      - master
+      exclude:
+      - '*'
+    pr:
+     branches:
+      include:
+      - master 
     
  pool:
   name: 'Default'  
