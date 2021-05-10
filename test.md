@@ -1,5 +1,5 @@
 
-******Following models are supported on CPU, GPU and M*YRIAD*******
+******Following models are supported on CPU, GPU and M*YRIAD********
 
 * [cifarnet](https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz)
 * [CRNN](https://github.com/MaybeShewill-CV/CRNN_Tensorflow)
