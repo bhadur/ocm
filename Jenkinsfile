@@ -31,7 +31,7 @@ pipeline {
                 printenv | sort
                 pwd
                 echo $WORKSPACE
-                echo "test"
+                echo "test2"
                 '''
             }
   
