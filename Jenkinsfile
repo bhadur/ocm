@@ -1,8 +1,5 @@
 pipeline {
-  agent {
-        node {
-          label 'EdgeCSP_01'
-        }
+  agent any
   triggers {
     GenericTrigger(
      genericVariables: [
@@ -29,6 +26,6 @@ pipeline {
         sh "echo $ref"
       }
     }
-  }
-}
+  
+
 }
