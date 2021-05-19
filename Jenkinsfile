@@ -1,31 +1,36 @@
-pipeline {
-  agent any
-  triggers {
-    GenericTrigger(
-     genericVariables: [
-      [key: 'ref', value: '$.ref']
-     ],
+name: frameworks.devops.intel-devops-framework.lib.shared
+guid: 3242e1e4-b82d-4b04-aef5-706e666a3e80
+owners:
+- bhadur.a.sm@intel.com
 
-     causeString: 'Triggered on $ref',
-
-     token: '85065d0eb110fec855b8464dcbfc95b4f237b3c5',
-     tokenCredentialId: 'bhadur',
-
-     printContributedVariables: true,
-     printPostContent: true,
-
-     silentResponse: false,
-
-     regexpFilterText: '$ref',
-     regexpFilterExpression: 'refs/heads/' + BRANCH_NAME
-    )
-  }
-  stages {
-    stage('Some step') {
-      steps {
-        sh "echo $ref"
-      }
-    }
-  }  
-
-}
+topics:
+- automation
+description: idf common shared functionality
+permissions:
+  write:
+  - IDSE Writers
+  admin:
+  - IDSE Admins
+allow-merge-commit: false
+allow-squash-merge: true
+allow-rebase-merge: true
+branch-protection-rules:
+- patterns:
+  - *
+  requires-approving-reviews: false
+  requires-status-checks:
+    enabled: false
+    requires-strict-status-checks: false
+  restricts-pushes:
+    enabled: false
+  is-admin-enforced: false
+webhooks:
+  retry:
+    total-attempts: 3
+  endpoints:
+  - description: Trigger Build
+    channel: it-jenkins
+    url: http://10.114.164.207:8080/github-webhook/
+    events:
+      matching-filters:
+      - event: push
