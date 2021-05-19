@@ -1,8 +1,5 @@
 name: frameworks.devops.intel-devops-framework.lib.shared
 guid: 3242e1e4-b82d-4b04-aef5-706e666a3e80
-owners:
-- bhadur.a.sm@intel.com
-
 topics:
 - automation
 description: idf common shared functionality
