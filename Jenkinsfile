@@ -1,41 +1,33 @@
 pipeline {
-    agent {
+  agent {
         node {
           label 'EdgeCSP_01'
         }
-      
-    }
-   
-    environment {
-        GITLAB_LOGIN = credentials('Intel-Gitlab')
-        PROTEX_LOGIN = credentials('protex_credentials')
-        PROTEX_PROJECT = "c_ocm_tf_21125"
-        PROTEX_SERVER = "amrprotex004.devtools.intel.com"
-        CURRENT_DATE = sh(script: 'date +%Y%m%d', returnStdout: true).trim()
-        PROJECT_NAME = "ocm" //Needs to be similar to Gitlab Project name
-        GitHub_Token = credentials('ocm_github_token')
-        GITLAB_BRANCH = "master"
-        Workspace="/home/ubuntu/workspace/EdgeCSP/OCM"
-        BDBA_Token = credentials('BDBA_Up_Dl')
+  triggers {
+    GenericTrigger(
+     genericVariables: [
+      [key: 'ref', value: '$.ref']
+     ],
 
-    }
-    
-     stages {
-     stage('Checkout SCM') {
-            steps{
-                sh '''
-                cd /home/ubuntu/workspace/EdgeCSP/test_job
-                #rm -rf *
-                pwd
-                ls
-                printenv | sort
-                pwd
-                echo $WORKSPACE
-                echo "test"
-                '''
-            }
-  
-    
-     }
-}
+     causeString: 'Triggered on $ref',
+
+     token: '85065d0eb110fec855b8464dcbfc95b4f237b3c5',
+     tokenCredentialId: 'bhadur',
+
+     printContributedVariables: true,
+     printPostContent: true,
+
+     silentResponse: false,
+
+     regexpFilterText: '$ref',
+     regexpFilterExpression: 'refs/heads/' + BRANCH_NAME
+    )
   }
+  stages {
+    stage('Some step') {
+      steps {
+        sh "echo $ref"
+      }
+    }
+  }
+}
