@@ -3,11 +3,6 @@ guid: 3242e1e4-b82d-4b04-aef5-706e666a3e80
 topics:
 - automation
 description: idf common shared functionality
-permissions:
-  write:
-  - IDSE Writers
-  admin:
-  - IDSE Admins
 allow-merge-commit: false
 allow-squash-merge: true
 allow-rebase-merge: true
