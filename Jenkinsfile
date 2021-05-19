@@ -1,6 +1,4 @@
 webhooks:
-  retry:
-    total-attempts: 3
   endpoints:
   - description: Trigger Build
     channel: it-jenkins
