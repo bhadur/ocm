@@ -1,18 +1,3 @@
-name: frameworks.devops.intel-devops-framework.lib.shared
-guid: 3242e1e4-b82d-4b04-aef5-706e666a3e80
-topics:
-- automation
-description: idf common shared functionality
-branch-protection-rules:
-- patterns:
-  - *
-  requires-approving-reviews: false
-  requires-status-checks:
-    enabled: false
-    requires-strict-status-checks: false
-  restricts-pushes:
-    enabled: false
-  is-admin-enforced: false
 webhooks:
   retry:
     total-attempts: 3
