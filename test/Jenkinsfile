@@ -12,7 +12,7 @@ pipeline {
             steps{
                 sh '''
                 cd /home/ubuntu/workspace/EdgeCSP/test_job
-                #rm -rf *
+                ##rm -rf *
                 pwd
                 ls
                 printenv | sort
