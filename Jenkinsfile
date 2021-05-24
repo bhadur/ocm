@@ -5,6 +5,12 @@ pipeline {
         }
       
     }
+     environment {
+        GITLAB_LOGIN = credentials('Intel-Gitlab')
+        CURRENT_DATE = sh(script: 'date +"%Y-%m-%d_%H-%M-%S"', returnStdout: true).trim()
+        PROJECT_NAME = "ocm" //Needs to be similar to Gitlab Project name
+        GITLAB_BRANCH = "master"
+    }
          
      stages {
             stage('Checkout SCM') {
@@ -19,9 +25,9 @@ pipeline {
     	    }
              
             stage('Scan: Checkmarx') {
-                steps{
-                    echo "Executing Checkmarx Jenkins Plugin to request a Scan"
-                    step([$class: 'CxScanBuilder', comment: '', credentialsId: 'Checkmarx', excludeFolders: '', exclusionsSetting: 'global', failBuildOnNewResults: false, failBuildOnNewSeverity: 'HIGH', filterPattern: '''!**/_cvs/**/*, !**/.svn/**/*,   !**/.hg/**/*,   !**/.git/**/*,  !**/.bzr/**/*, !**/bin/**/*,
+            steps{
+                echo "Executing Checkmarx Jenkins Plugin to request a Scan..."
+                step([$class: 'CxScanBuilder', comment: '', credentialsId: 'Checkmarx', excludeFolders: '', exclusionsSetting: 'global', failBuildOnNewResults: false, failBuildOnNewSeverity: 'HIGH', filterPattern: '''!**/_cvs/**/*, !**/.svn/**/*,   !**/.hg/**/*,   !**/.git/**/*,  !**/.bzr/**/*, !**/bin/**/*,
 !**/obj/**/*,  !**/backup/**/*, !**/.idea/**/*, !**/*.DS_Store, !**/*.ipr,     !**/*.iws,
 !**/*.bak,     !**/*.tmp,       !**/*.aac,      !**/*.aif,      !**/*.iff,     !**/*.m3u, !**/*.mid, !**/*.mp3,
 !**/*.mpa,     !**/*.ra,        !**/*.wav,      !**/*.wma,      !**/*.3g2,     !**/*.3gp, !**/*.asf, !**/*.asx,
@@ -57,6 +63,8 @@ pipeline {
             
             }
         }
+
+
          
             stage('Scan: Klocwork') {
                steps{
