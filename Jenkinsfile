@@ -32,9 +32,6 @@ pipeline {
                 
                    KWPROJ_NAME=OCM
                    pwd
-                   mkdir ocm
-                   cd ocm
-                   git clone https://github.com/intel/ocm.git
                    cd ocm
                    sed -i "s|^make|/home/ubuntu/kw2020/bin/kwinject make|g" build_ocm.sh
                    source /home/ubuntu/ocm_tf_setup/ocm_venv/bin/activate
