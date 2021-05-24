@@ -73,7 +73,9 @@ pipeline {
                 
                    KWPROJ_NAME=OCM
                    pwd
-                   #cd ocm
+                   mkdir ocm
+                   cd ocm
+                   git clone https://github.com/intel/ocm.git
                    sed -i "s|^make|/home/ubuntu/kw2020/bin/kwinject make|g" build_ocm.sh
                    source /home/ubuntu/ocm_tf_setup/ocm_venv/bin/activate
                    pip install /home/ubuntu/ocm_tf_setup/tensorflow/tensorflow-2.4.1-cp36-cp36m-linux_x86_64.whl
@@ -84,7 +86,7 @@ pipeline {
                    cd $WORKSPACE
                    python3 /home/ubuntu/OWR_klocwork_report.py --server https://klocwork-jf24.devtools.intel.com --port 8190 --project ${KWPROJ_NAME} --build build_kw --output kw_report_ocm.html
                    zip -r kw_report.zip kw_report_ocm.html
-                   cp kw_report.zip artifacts
+                   #cp kw_report.zip artifacts
                    '''    
                  }
             }
