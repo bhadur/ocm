@@ -17,6 +17,16 @@ pipeline {
                    '''
                 }
     	    }
+         
+           stage('Pushing the image in repo') { 
+            steps {
+                echo 'Pushing the image to repositry'
+                sh'''
+                 pwd
+                 ls
+                '''
+            }
+        }
              
             stage('Scan: Checkmarx') {
                 steps{
