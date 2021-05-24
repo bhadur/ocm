@@ -1,7 +1,7 @@
 pipeline {
     agent {
         node {
-          label 'EdgeCSP_01'
+          label 'master'
         }
       
     }
@@ -21,20 +21,18 @@ pipeline {
     }
     
      stages {
-     stage('Checkout SCM') {
-            steps{
-                sh '''
-                cd /home/ubuntu/workspace/EdgeCSP/test_job
-                #rm -rf *
-                pwd
-                ls
-                printenv | sort
-                pwd
-                echo $WORKSPACE
-                '''
-            }
+            stage('Checkout SCM') {
+               steps{
+                   sh '''#!/bin/bash
+                      uname -a
+                      mkdir artifacts
+                      git clone https://github.com/bhadur/openvino_tensorflow-1.git
+                      
+                   '''
+                }
+    	    }
   
     
      }
-}
+
   }
