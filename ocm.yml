@@ -1,11 +1,3 @@
-resources:
- repositories:
-   - repository: ocm
-     type: github
-     endpoint: bhadur
-     name: bhadur/ocm
-   
-    
 pool:
   name: 'Default'  
 
@@ -22,10 +14,6 @@ steps:
       rm -rf $(BUILD_DIR) ; mkdir $(BUILD_DIR)
       
    
-   - checkout: self
-     clean: true
-     lfs: false
-     path: ocm
       
    - script: |
       cd $(WORK_DIR)
