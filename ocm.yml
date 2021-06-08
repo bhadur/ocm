@@ -1,21 +1,21 @@
 resources:
-  repositories:
-  - repository: ocm
-    type: github
-    endpoint: bhadur
-    name: bhadur/ocm
+ repositories:
+   - repository: ocm
+     type: github
+     endpoint: bhadur
+     name: bhadur/ocm
    
     
- pool:
+pool:
   name: 'Default'  
 
- variables:
+variables:
     WORK_DIR: $(Pipeline.Workspace)/ocm
     BUILD_DIR: $(WORK_DIR)/build
     HOME_DIR: /home/bhadur
    
     
- steps:
+steps:
 
    - script: |
       rm -rf $(WORK_DIR) ; mkdir $(WORK_DIR)
