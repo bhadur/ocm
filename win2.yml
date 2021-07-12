@@ -5,17 +5,17 @@ resources:
     endpoint: GitHub connection 11
     name: bhadur/ocm
 
-  pool:
+pool:
     name: windows
 
-  variables:
+variables:
     
     WORK_DIR: $(Pipeline.Workspace)\_w
     BUILD_DIR: D:\build
     INSTALL_DIR: $(WORK_DIR)\install_pkg
     
 
-  steps:
+steps:
   - checkout: self
     clean: true
     lfs: false
