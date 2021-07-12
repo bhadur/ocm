@@ -21,7 +21,7 @@ steps:
       echo $(Code)
       echo"testing"
       pwd
-      python3 build_ovtf.py --use_tensorflow_from_location=/home/iotgecsp/tf_source/v2.4.1 --cxx11_abi_version=0
+      python3.8 build_ovtf.py --use_tensorflow_from_location=/home/iotgecsp/tf_source/v2.4.1 --cxx11_abi_version=0
       source build_cmake/venv-tf-py3/bin/activate
      workingDirectory: $(Code) 
      displayName: "Build"
