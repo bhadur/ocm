@@ -1,35 +1,39 @@
-   
- pool:
-  name: 'Default'  
-
- variables:
-    WORK_DIR: $(Pipeline.Workspace)/ocm
+pool:
+  name: 'Test'
+  
+variables:
+    WORK_DIR: $(Pipeline.Workspace)/openvino_tensorflow
     BUILD_DIR: $(WORK_DIR)/build
-    BUILD_TYPE: OCM
-    OV_VERSION: openvino_2021.2.185
-    TEST_FILE: test_list.txt
-    OPENVINO_BIN_DIR: /opt/intel/openvino_2021.2.185
-    TESTMODE: UTEST
-    DEVICE: CPU
+    OV_LOCATION: /opt/intel/openvino_2021.3.394/
+    RUN_TYPE: 'ov_addon_tf_abi0_cpu,ov_addon_tf_abi0_igpu,ov_addon_tf_abi0_myriad'
+    MODELS_DIR: /home/iotgecsp/basm/openvino_tensorflow_models/demo
+    JOB_DIR: /home/iotgecsp/azu_ag/myagent/jenkins_scripts
+    Code: /home/iotgecsp/basm/openvino_tensorflow
     
- steps:
-
+steps:
+ 
    - script: |
       rm -rf $(WORK_DIR) ; mkdir $(WORK_DIR)
       rm -rf $(BUILD_DIR) ; mkdir $(BUILD_DIR)
       
-     
+   
    - script: |
-      WORK_DIR=/home/bhadur/azu_ag/myagent/
-      mkdir -p $WORK_DIR/TESTDIR/
-      mkdir -p $WORK_DIR/LastLog/
-      cd $WORK_DIR/test/python/
-      cp -r tf_ocm_logs/ $WORK_DIR/LastLog
-      cd $WORK_DIR/LastLog/
-      mkdir -p $WORK_DIR/TESTDIR/$DEVICE/${OV_VERSION}/tf_ocm_logs
-      cp -r $WORK_DIR/LastLog/tf_ocm_logs/$DEVICE/* $WORK_DIR/TESTDIR/$DEVICE/${OV_VERSION}/tf_ocm_logs/
-      cd $WORK_DIR/test/python/
-      pip3 install XlsxWriter
-      python3 /home/bhadur/tflow/jenkins_workspace/utilityrobot.py $WORK_DIR/TESTDIR
-      cp ocm_report.xlsx /tmp
-     displayName: "Logging and reporting "
+      echo $(WORK_DIR)
+      echo"testing"
+      pwd
+      cd $Code
+      python3 build_ovtf.py --use_tensorflow_from_location=/home/iotgecsp/tf_source/v2.4.1 --cxx11_abi_version=0
+      source build_cmake/venv-tf-py3/bin/activate
+     workingDirectory: $(WORK_DIR) 
+     displayName: "Build"
+   
+   - script: |
+      bash auto_perf.sh $RUN_TYPE $MODELS_DIR $JOB_DIR
+      python3 validate_perf.py old_ovtfvsperf_report.xlsx ; if [[ $? == 0 ]]; then echo "Build step success"; else echo "Build step failed ";exit 1; fi
+     workingDirectory: $(JOB_DIR) 
+     displayName: "Perf Test"
+     
+       
+   - script: |
+     displayName: "Cleanup"   
+     workingDirectory: $(WORK_DIR)
