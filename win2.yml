@@ -5,11 +5,6 @@ resources:
     endpoint: GitHub connection 11
     name: bhadur/ocm
 
-jobs:
-- job: win
-  # About 150% of total time
-  timeoutInMinutes: 120
-
   pool:
     name: windows
 
