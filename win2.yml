@@ -2,7 +2,7 @@ resources:
   repositories:
   - repository: ocm
     type: github
-    endpoint: bhadur
+    endpoint: GitHub connection 11
     name: bhadur/ocm
 
 jobs:
