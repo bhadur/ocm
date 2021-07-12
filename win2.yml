@@ -1,0 +1,46 @@
+resources:
+  repositories:
+  - repository: ocm
+    type: github
+    endpoint: bhadur
+    name: bhadur/ocm
+
+jobs:
+- job: win
+  # About 150% of total time
+  timeoutInMinutes: 120
+
+  pool:
+    name: windows
+
+  variables:
+    
+    WORK_DIR: $(Pipeline.Workspace)\_w
+    BUILD_DIR: D:\build
+    INSTALL_DIR: $(WORK_DIR)\install_pkg
+    
+
+  steps:
+  - checkout: self
+    clean: true
+    lfs: false
+    path: ocm
+    
+  - script: |
+      
+      where python3
+      where python
+      python --version
+      where java
+      java -version
+      wmic computersystem get TotalPhysicalMemory
+      wmic cpu list
+      wmic logicaldisk get description,name
+      wmic VOLUME list
+      set
+    displayName: 'System info'
+    
+    
+  - script: |
+      rd /Q /S $(WORK_DIR) & mkdir $(WORK_DIR)
+    displayName: 'Make dir'
