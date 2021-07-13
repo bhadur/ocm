@@ -18,9 +18,6 @@ variables:
     
 steps:
  
-   - script: |
-      rm -rf $(WORK_DIR) ; mkdir $(WORK_DIR)
-      rm -rf $(BUILD_DIR) ; mkdir $(BUILD_DIR)
       
    - checkout: self
      clean: true
