@@ -25,7 +25,7 @@ steps:
       git clone https://github.com/openvinotoolkit/openvino_tensorflow.git
       cd openvino_tensorflow
       git submodule init
-      git submodeul update
+      git submodule update
       ls
       python3.8 build_ovtf.py --use_tensorflow_from_location=${TF_PATH} --cxx11_abi_version=0
       source build_cmake/venv-tf-py3/bin/activate
