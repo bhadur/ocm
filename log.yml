@@ -1,3 +1,10 @@
+resources:
+  repositories:
+  - repository: openvino_tensorflow
+    type: github
+    endpoint: GitHub connection 10
+    name: bhadur/openvino_tensorflow
+    
 pool:
   name: 'Test'
   
@@ -15,6 +22,11 @@ steps:
       rm -rf $(WORK_DIR) ; mkdir $(WORK_DIR)
       rm -rf $(BUILD_DIR) ; mkdir $(BUILD_DIR)
       
+   - checkout: self
+     clean: true
+     lfs: false
+     path: openvino_tensorflow   
+     
    
    - script: |
       echo $(MODELS_DIR)
