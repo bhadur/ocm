@@ -9,7 +9,7 @@ pool:
   name: 'Perf'
   
 variables:
-    WORK_DIR: $(Pipeline.Workspace)/
+    WORK_DIR: $(Pipeline.Workspace)
     OV_LOCATION: /opt/intel/openvino_2021.3.394/
     RUN_TYPE: 'ov_addon_tf_abi0_cpu,ov_addon_tf_abi0_igpu,ov_addon_tf_abi0_myriad'
     MODELS_DIR: /home/iotgecsp/ci_models
@@ -41,11 +41,11 @@ steps:
       ls
       python3 build_ovtf.py --use_tensorflow_from_location=${TF_PATH} --cxx11_abi_version=0
       source build_cmake/venv-tf-py3/bin/activate
-     workingDirectory: $(WORK_DIR) 
+     workingDirectory: $(MODELS_DIR) 
      displayName: "Build"
    
    - script: |
-      bash auto_perf.sh $RUN_TYPE $MODELS_DIR $JOB_DIR $WORK_DIR &> perflog.txt
+      bash auto_perf.sh $RUN_TYPE $MODELS_DIR $JOB_DIR &> perflog.txt
       python3 validate_perf.py old_ovtfvsperf_report.xlsx ; if [[ $? == 1 ]]; then echo "Build step success"; else echo "Build step failed ";exit 1; fi
      workingDirectory: $(JOB_DIR) 
      displayName: "Perf Test"
