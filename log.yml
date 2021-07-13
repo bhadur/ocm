@@ -26,7 +26,8 @@ steps:
      
    
    - script: |
-      echo $(MODELS_DIR)
+      echo $(WORK_DIR)
+      bash auto_perf.sh $RUN_TYPE $MODELS_DIR $JOB_DIR $WORK_DIR &> perflog.txt
       echo"testing"
       pwd
       git submodule init
