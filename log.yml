@@ -9,7 +9,7 @@ pool:
   name: 'Perf'
   
 variables:
-    WORK_DIR: $(Pipeline.Workspace)
+    WORK_DIR: $(Pipeline.Workspace)/openvino_tensorflow
     OV_LOCATION: /opt/intel/openvino_2021.3.394/
     RUN_TYPE: 'ov_addon_tf_abi0_cpu,ov_addon_tf_abi0_igpu,ov_addon_tf_abi0_myriad'
     MODELS_DIR: /home/iotgecsp/ci_models
@@ -24,13 +24,9 @@ steps:
      lfs: false
      path: openvino_tensorflow
 
-   - script: |
-      rm -rf *
-     displayName: "Cleanup"   
-     workingDirectory: $(WORK_DIR)
 
    - script: |
-      echo $WORK_DIR
+      
       echo $MODELS_DIR
       echo $RUN_TYPE
       git clone https://github.com/openvinotoolkit/openvino_tensorflow.git
@@ -49,3 +45,8 @@ steps:
       python3 validate_perf.py old_ovtfvsperf_report.xlsx ; if [[ $? == 1 ]]; then echo "Build step success"; else echo "Build step failed ";exit 1; fi
      workingDirectory: $(JOB_DIR) 
      displayName: "Perf Test"
+
+   - script: |
+      rm -rf *
+     displayName: "Cleanup"   
+     workingDirectory: $(WORK_DIR)
