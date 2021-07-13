@@ -6,7 +6,7 @@ resources:
     name: bhadur/openvino_tensorflow
     
 pool:
-  name: 'Test'
+  name: 'Perf'
   
 variables:
     WORK_DIR: $(Pipeline.Workspace)/openvino_tensorflow
