@@ -3,13 +3,11 @@ pool:
   
 variables:
     WORK_DIR: $(Pipeline.Workspace)/openvino_tensorflow
-    BUILD_DIR: $(WORK_DIR)/build
     OV_LOCATION: /opt/intel/openvino_2021.3.394/
     RUN_TYPE: 'ov_addon_tf_abi0_cpu,ov_addon_tf_abi0_igpu,ov_addon_tf_abi0_myriad'
     MODELS_DIR: /home/iotgecsp/ci_models
     JOB_DIR: /home/iotgecsp/azu_ag/myagent/jenkins_scripts
     TF_PATH: /home/iotgecsp/tf_source/tf_2_5_0
-    Code: /home/iotgecsp/basm/openvino_tensorflow
     
 steps:
  
@@ -22,23 +20,22 @@ steps:
       echo $(MODELS_DIR)
       echo"testing"
       pwd
-      git clone https://github.com/openvinotoolkit/openvino_tensorflow.git
-      cd openvino_tensorflow
       git submodule init
       git submodule update
       ls
-      python3.8 build_ovtf.py --use_tensorflow_from_location=${TF_PATH} --cxx11_abi_version=0
+      python3 build_ovtf.py --use_tensorflow_from_location=${TF_PATH} --cxx11_abi_version=0
       source build_cmake/venv-tf-py3/bin/activate
-     workingDirectory: $(MODELS_DIR) 
+     workingDirectory: $(WORK_DIR) 
      displayName: "Build"
    
    - script: |
-      bash auto_perf.sh $RUN_TYPE $MODELS_DIR $JOB_DIR &> perflog.txt
+      bash auto_perf.sh $RUN_TYPE $MODELS_DIR $JOB_DIR $WORK_DIR &> perflog.txt
       python3 validate_perf.py old_ovtfvsperf_report.xlsx ; if [[ $? == 1 ]]; then echo "Build step success"; else echo "Build step failed ";exit 1; fi
      workingDirectory: $(JOB_DIR) 
      displayName: "Perf Test"
      
        
    - script: |
+      rm -rf *
      displayName: "Cleanup"   
      workingDirectory: $(WORK_DIR)
