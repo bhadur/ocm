@@ -7,7 +7,8 @@ variables:
     BUILD_DIR: D:\build
     INSTALL_DIR: $(WORK_DIR)\install_pkg
  
- 
+steps:
+
   - script: |
       
       where python3
