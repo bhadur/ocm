@@ -1,10 +1,3 @@
-resources:
-  repositories:
-  - repository: ocm
-    type: github
-    endpoint: GitHub connection 11
-    name: bhadur/ocm
-
 pool:
     name: windows
 
@@ -13,14 +6,8 @@ variables:
     WORK_DIR: $(Pipeline.Workspace)\_w
     BUILD_DIR: D:\build
     INSTALL_DIR: $(WORK_DIR)\install_pkg
-    
-
-steps:
-  - checkout: self
-    clean: true
-    lfs: false
-    path: ocm
-    
+ 
+ 
   - script: |
       
       where python3
