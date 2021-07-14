@@ -1,0 +1,24 @@
+resources:
+  repositories:
+  - repository: ocm
+    type: github
+    endpoint: GitHub connection 10
+    name: bhadur/ocm
+    
+pool:
+  name: 'Perf'
+  
+variables:
+    WORK_DIR: $(Pipeline.Workspace)/openvino_tensorflow
+    
+steps:
+ 
+      
+   - checkout: self
+     clean: true
+     lfs: false
+     path: ocm
+
+   - script: |  
+       echo "test"
+       echo $WORK_DIR
