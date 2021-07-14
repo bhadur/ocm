@@ -38,7 +38,7 @@ steps:
       python3.8 build_ovtf.py --use_tensorflow_from_location=${TF_PATH} --cxx11_abi_version=0
       source build_cmake/venv-tf-py3/bin/activate
      workingDirectory: $(MODELS_DIR) 
-     displayName: "Build"
+     displayName: "Building"
    
    - script: |
       bash auto_perf.sh $RUN_TYPE $MODELS_DIR $JOB_DIR &> perflog.txt
