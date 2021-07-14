@@ -3,7 +3,7 @@ pool:
 
 variables:
     
-    WORK_DIR: $(Pipeline.Workspace)\_w
+    WORK_DIR: $(Pipeline.Workspace)\
     BUILD_DIR: D:\build
     INSTALL_DIR: $(WORK_DIR)\install_pkg
  
