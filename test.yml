@@ -9,7 +9,7 @@ pool:
   name: 'Perf'
   
 variables:
-    WORK_DIR: $(Pipeline.Workspace)/openvino_tensorflow
+    WORK_DIR: $(Pipeline.Workspace)/ocm
     
 steps:
  
