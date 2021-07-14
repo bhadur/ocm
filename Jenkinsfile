@@ -17,6 +17,7 @@ pipeline {
                steps{
                    sh '''#!/bin/bash
                       #uname -a
+                      #test
                       #mkdir artifacts
                       #git clone https://github.com/bhadur/ocm.git
                       
