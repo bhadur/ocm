@@ -20,5 +20,4 @@ steps:
      path: ocm
 
    - script: |  
-       echo "test"
-       echo $WORK_DIR
+       echo ""print"
